@@ -30,6 +30,7 @@ export const useBreedStore = defineStore('breeds', {
         breeds = await getBreeds()
       } catch (error) {
         alert("Apologies but we could not load new cats for you at this time! Miau!")
+        this.breeds = [];
         return;
       }
 
@@ -43,6 +44,8 @@ export const useBreedStore = defineStore('breeds', {
         breedSearchResults = await searchBreeds(breedId, pageNumber)
       } catch (error) {
         alert("Apologies but we could not load new cats for you at this time! Miau!")
+        this.breedSearchResults = [];
+        this.newAddedBreeds = 0
         return;
       }
      
