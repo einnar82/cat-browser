@@ -5,4 +5,4 @@ declare module 'vue' {
     export * from '@vue/runtime-dom'
     const { configureCompat } = Vue
     export { configureCompat }
-  }
+}
