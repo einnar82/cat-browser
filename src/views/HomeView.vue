@@ -72,7 +72,12 @@ onMounted(async () => {
           v-for="(searchResult, index) in breedSearchResults"
           v-show="breedSearchResults.length !== 0"
           :key="index">
-          <CatCard v-if="searchResult" :cat="searchResult" :buttonAction="() => goToPage(searchResult.id)"/>
+          <CatCard 
+            v-if="searchResult" 
+            v-bind="{
+              cat: searchResult,
+              buttonAction: () => goToPage(searchResult.id)
+          }"/>
         </b-col>
       </b-row>
       <b-row :style="{'display': display, 'padding': '10px 0px' }">
