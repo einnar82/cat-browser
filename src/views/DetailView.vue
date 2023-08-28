@@ -10,7 +10,7 @@ const router = useRouter()
 
 const backToIndexPage = (): void => {
     breedStore.toggleDropdown()
-    router.replace(`/?breed=${breed?.value.breeds[0].id}`);
+    router.replace(`/?breed=${breed?.value?.breeds[0].id}`);
 }
 
 onMounted(async () => {

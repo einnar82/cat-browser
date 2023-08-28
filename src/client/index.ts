@@ -1,5 +1,6 @@
 import type { Breed } from '@/types/Breed';
 import type { BreedSearchResult } from '@/types/BreedSearchResult';
+import type { Nullable } from '@/types/common/Nullable';
 import axios, { Axios } from 'axios';
 
 const httpRequest: Axios = axios.create({
@@ -20,7 +21,7 @@ const getImageInfo = async (catId: string): Promise<BreedSearchResult> => {
     return data;
 }
 
-const searchBreeds = async (breedId?: string, pageNumber: number = 1): Promise<BreedSearchResult[]> => {
+const searchBreeds = async (breedId?: Nullable<String>, pageNumber: number = 1): Promise<BreedSearchResult[]> => {
     const { data } = await httpRequest
       .get<BreedSearchResult[]>
       (`/images/search?page=${pageNumber}&limit=10&breed_id=${breedId}`);

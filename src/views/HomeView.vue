@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useBreedStore } from '@/stores/useBreedStore'
+import type { Nullable } from '@/types/common/Nullable'
 import { storeToRefs } from 'pinia';
 const breedStore = useBreedStore();
 const { getBreedNames, breedSearchResults, newAddedBreeds, selectedBreedId, isDropdownToggled } = storeToRefs(breedStore);
@@ -9,13 +10,14 @@ const router = useRouter();
 const route = useRoute();
 
 const goToPage = (id: string) => {
+  breedStore.toggleDropdown()
   return router.replace(`/${id}`)
 }
 
 const pageNumber = ref(1)
 const isBrowsing = ref(true)
 
-const loadBreedData = async (breedId: string, pageNumber: number = 1) => {
+const loadBreedData = async (breedId?: Nullable<String>, pageNumber: number = 1) => {
   await breedStore.fetchBreedSearchResult(breedId, pageNumber);
   breedStore.toggleDropdown()
   isBrowsing.value = !isBrowsing.value

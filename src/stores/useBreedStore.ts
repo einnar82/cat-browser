@@ -4,6 +4,7 @@ import type { BreedSearchResult } from '@/types/BreedSearchResult'
 import { getBreeds, getImageInfo, searchBreeds } from '@/client'
 import type { BreedStore } from '@/types/store/BreedStore'
 import type { Accumulator } from '@/types/store/Accumulator'
+import type { Nullable } from '@/types/common/Nullable'
 
 export const useBreedStore = defineStore('breeds', {
   state: (): BreedStore => ({
@@ -40,7 +41,7 @@ export const useBreedStore = defineStore('breeds', {
 
       this.breeds = breeds
     },
-    async fetchBreedSearchResult(breedId?: string, pageNumber: number = 1) {
+    async fetchBreedSearchResult(breedId?: Nullable<String>, pageNumber: number = 1) {
       this.selectedBreedId = breedId ?? null
 
       let breedSearchResults: BreedSearchResult[] = []
