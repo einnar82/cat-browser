@@ -9,6 +9,7 @@ const route = useRoute();
 const router = useRouter()
 
 const backToIndexPage = (): void => {
+    breedStore.toggleDropdown()
     router.replace(`/?breed=${breed?.value.breeds[0].id}`);
 }
 

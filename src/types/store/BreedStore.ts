@@ -7,5 +7,6 @@ export interface BreedStore {
   newAddedBreeds: Number
   selectedBreedId?: String | null
   breed?: BreedSearchResult | null
-  isFetchingBreeds: Boolean
+  isFetchingBreeds: Boolean,
+  isDropdownToggled: Boolean
 }

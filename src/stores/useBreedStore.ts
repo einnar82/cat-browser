@@ -12,7 +12,8 @@ export const useBreedStore = defineStore('breeds', {
     breedSearchResults: [],
     newAddedBreeds: 0,
     selectedBreedId: null,
-    isFetchingBreeds: false
+    isFetchingBreeds: false,
+    isDropdownToggled: false,
   }),
   getters: {
     getBreedNames: (state) =>
@@ -24,6 +25,9 @@ export const useBreedStore = defineStore('breeds', {
       })
   },
   actions: {
+    toggleDropdown() {
+      this.isDropdownToggled = !this.isDropdownToggled
+    },
     async fetchBreeds() {
       let breeds: Breed[] = []
       try {

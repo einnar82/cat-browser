@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useBreedStore } from '@/stores/useBreedStore'
 import { storeToRefs } from 'pinia';
 const breedStore = useBreedStore();
-const { getBreedNames, breedSearchResults, newAddedBreeds, selectedBreedId, isFetchingBreeds } = storeToRefs(breedStore);
+const { getBreedNames, breedSearchResults, newAddedBreeds, selectedBreedId, isDropdownToggled } = storeToRefs(breedStore);
 import { useRoute, useRouter } from "vue-router"
 const router = useRouter();
 const route = useRoute();
@@ -17,6 +17,7 @@ const isBrowsing = ref(true)
 
 const loadBreedData = async (breedId: string, pageNumber: number = 1) => {
   await breedStore.fetchBreedSearchResult(breedId, pageNumber);
+  breedStore.toggleDropdown()
   isBrowsing.value = !isBrowsing.value
 }
 
@@ -84,7 +85,7 @@ onMounted(async () => {
         <b-col md="3" sm="6" cols="12">
           <b-button variant="success" 
                   @click="loadBreedData(selectedBreedId, ++pageNumber)"
-                  :disabled="newAddedBreeds === 0 && pageNumber != 1">Load more</b-button>
+                  :disabled="newAddedBreeds === 0 && pageNumber != 1 || isDropdownToggled === false">Load more</b-button>
         </b-col>
       </b-row>
     </b-container>
